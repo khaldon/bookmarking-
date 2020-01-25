@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Edit your account{% endblock %}
+{% block content %}
+    <h1>Edit your account</h1>
+    <p>You can edit your account using the following form:</p>
+    <form action="." method="post" enctype="multipart/form-data">
+    <div class="row">
+        {{user_form.non_field_errors}}
+        {{profile_form.non_field_errors}}
+            <div class="col-md-4">
+                    {# user_form.as_p #}
+                    {# profile_form.as_p #}
+                    <div class="form-group">
+                        {{user_form.first_name.errors}}
+                        <label for="{{user_form.first_name.id_for_label}}">First name</label>
+                        {{user_form.first_name}}
+                    </div>
+                    <div class="form-group">
+                        {{user_form.last_name.errors}}
+                        <label for="{{user_form.last_name.id_for_label}}">Last name</label>
+                        {{user_form.last_name}}
+                    </div>
+                    <div class="form-group">
+                        {{user_form.email.errors}}
+                        <label for="{{user_form.email.id_for_label}}">Email address</label>
+                        {{user_form.email}}
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email</small>
+                    </div>
+                    <div class="form-group">
+                        {{profile_form.date_of_birth.errors}}
+                        <label for="{{profile_form.date_of_birth.id_for_label}}">Date of birth</label>
+                        {{profile_form.date_of_birth}}
+                    </div>       
+                    <div class="form-group">
+                        <label for="#exampleFormControlFile1">Image profile</label>
+                        <input type="file" name="photo" id="exampleFormControlFile1">
+                    </div>
+
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">submit</button>
+            </div>
+           
+    </div>
+</form>          
+{% endblock %}       
